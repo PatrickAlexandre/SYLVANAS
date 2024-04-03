@@ -108,6 +108,72 @@
       gap: 20px;
     }
 
+  /* Style général pour les conteneurs de barres de progression */
+  .progress-container {
+      width: 100%;
+      background-color: #eee; /* Couleur de fond des barres de progression */
+      border-radius: 8px;
+      margin: 20px 0;
+      position: relative; /* Nécessaire pour positionner correctement les barres de progression et de dépassement */
+  }
+
+  /* Styles spécifiques pour la barre de progression des aliments */
+  #food-progress-bar {
+      height: 20px;
+      background-color: #4CAF50; /* Vert pour indiquer le stock d'aliments */
+      text-align: center;
+      line-height: 20px;
+      color: white;
+      border-radius: 8px;
+      width: 0%; /* Initialisé à 0, sera mis à jour dynamiquement par JS */
+      position: absolute;
+      left: 0;
+  }
+
+  /* Styles spécifiques pour la barre de progression des calories */
+  #calories-progress-bar {
+      height: 20px;
+      background-color: #2196F3; /* Bleu pour indiquer les calories consommées */
+      text-align: center;
+      line-height: 20px;
+      color: white;
+      border-radius: 8px;
+      width: 0%; /* Initialisé à 0, sera mis à jour dynamiquement par JS */
+      position: absolute;
+      left: 0;
+  }
+
+  /* Style pour la barre de dépassement (calories uniquement) */
+  #calories-over-limit-bar {
+      height: 20px;
+      background-color: #f44336; /* Rouge pour indiquer le dépassement des calories */
+      text-align: center;
+      line-height: 20px;
+      color: white;
+      border-radius: 8px;
+      width: 0%; /* Initialisé à 0, sera mis à jour dynamiquement par JS */
+      position: absolute;
+      right: 0; /* La barre de dépassement se remplit de droite à gauche */
+  }
+
+  /* Styles spécifiques pour la barre de progression de l'espérance de vie */
+  #esperanceHP .progress-bar {
+      height: 20px;
+      background-color: #ff9800; /* Orange pour indiquer l'espérance de vie */
+      text-align: center;
+      line-height: 20px;
+      color: white;
+      border-radius: 8px 0 0 8px; /* Arrondi uniquement du côté gauche pour commencer */
+      width: 1%; /* Initialisé à 0, sera mis à jour dynamiquement par JS */
+      position: absolute;
+      left: 0;
+  }
+
+  /* Ajout d'un effet de transition pour animer les changements de la barre */
+  #esperanceHP .progress-bar {
+      transition: width 0.5s ease-in-out;
+  }
+
     </style>
   </head>
 <body class="w3-theme-l5">
@@ -128,9 +194,8 @@
       <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
     </div>
   </div>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account" onclick="demanderDateNaissance()">
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
     <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
-    <i class="fa-solid fa-user-tie"></i>
   </a>
  </div>
 </div>
@@ -151,11 +216,40 @@
     <div class="w3-col m3">
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
+        <!-- Client Box -->
+        <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom">
+          <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+            <i class="fa fa-remove"></i>
+          </span>
+          <p><strong contenteditable="true">Player</strong></p>
+          <hr>
+          <input type="date" id="BirthDate" onchange="calculerAgeEtNuitsEcoulées()">
+          <select id="gender" onchange="calculerAgeEtNuitsEcoulées()">
+              <option value="male">male</option>
+              <option value="female">female</option>
+          </select>
+          <hr>
+            <div class="w3-container">        
+                <label for="weight">Poids (en kg) :</label>
+                <input type="number" id="weight" value="70">
+                <br>
+                <label for="height">Taille (en cm) :</label>
+                <input type="number" id="height" value="170">
+                  <br>
+                  <hr>
+                  <button onclick="calculateBMR()">Calculer les besoins caloriques</button>
+                  <br>
+            </div>  
+        </div>        
         <div class="w3-container">
-         <h4 id="current-age" class="level w3-center">1</h4>
-         <p class="w3-center"><img src="https://64.media.tumblr.com/06be4be00ddb1f20e627b8f8b41caeb9/tumblr_o68u0vgd0p1qkpz2go1_r1_400.gif" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-          <iframe src="https://indify.co/widgets/live/progressBar/0ZLxdaOuuNO8RzKgWvbt" width="100%" height="50" style="border: none; margin: 0;"></iframe>
-         <hr>
+          <h4 id="current-age" class="level w3-center">{LVL}</h4>
+          <p class="w3-center"><img src="https://64.media.tumblr.com/06be4be00ddb1f20e627b8f8b41caeb9/tumblr_o68u0vgd0p1qkpz2go1_r1_400.gif" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+          <div id="esperanceHP" class="progress-container">
+          <div class="progress-bar" >0%</div>  <!-- Barre pour le calcul de la vie restante -->
+          </div>
+          <br>
+          <div id="nights-lived">{HP}</div> 
+          <hr>
         <!-- Barre de progression = %HEALTH_MAX% -->
          <p> Heat <i class="fa fa-fire fa-fw w3-margin-right w3-text-theme"></i>200 k</p>
          <div class="w3-border">
@@ -164,6 +258,11 @@
 
           
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> calories</p>
+          <div class="progress-container">
+            <div class="progress-bar" id="calories-progress-bar">0%</div>  <!-- Barre pour le calcul des besoins Caloriques -->
+            <div class="over-limit-bar" id="calories-over-limit-bar"></div> <!-- Barre pour le dépassement -->
+          </div>
+
          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> motivation</p>
 
 
@@ -257,7 +356,16 @@
         </div>
       </div>
       <br>
-      
+
+       <!-- Alert Box -->
+      <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom">
+        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+          <i class="fa fa-remove"></i>
+        </span>
+        <strong>👋 Hello!</strong>
+        
+      </div>
+
       <!-- Alert Box -->
       <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
         <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
@@ -301,6 +409,8 @@
         <h4>Sous chef | Bonne dégustation!</h4><br>
         <hr class="w3-clear">
         <h3>Menu du Restaurant</h3>
+
+      <!-- Formules -->
           <div class="menu-grid">
             <div class="menu-item">
               <h5>Entrées</h5>
@@ -327,18 +437,58 @@
               </ul>
             </div>
           </div>
-          <h3>Cuisine</h3>
-          <iframe src="https://chat.openai.com/g/g-3VrgJ1GpH-sous-chef" style="border:none; width:100%; height:150px;"></iframe>
+      <!-- Formules -->
 
-          <a href="https://ciqual.anses.fr/" target="_blank" title="Composition nutritionnelle des aliments">Aliments, nutrition</a>
+        <hr class="w3-clear">          
+        <h3>Chef cuisinier</h3>
+        <hr>
+          <!-- Barre de progression Aliments -->
+        <div class="w3-container w3-card w3-white w3-round w3-margin">    
+          <h4>Aliments</h4>
+          <div>
+              <label for="current-value-input">En stock : </label>
+              <input type="number" id="current-value-input" value="0" />
+          </div>
 
-            Nom
-            Composants
-            Source
-            Compétence
-          
+
+
+        </div>
+          <!-- Barre de progression Livraison -->
+        <div class="w3-container w3-card w3-white w3-round w3-margin">  
+          <h4>Livraison</h4>
+          <a href="https://chat.openai.com/g/g-3VrgJ1GpH-sous-chef" target="_blank" title="Sous-chef">Commencer la préparation de...</a> +Distribution (=Livraison)
+              <hr>
+              Nom
+              Composants
+              Source
+              Compétence
++ suivi et historique +ticket / mail  
+          </div>     
+
+
       </div> 
 
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_coin_02.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity">28 min</span>
+        <h4>Pouvoir d'achat</h4>
+        <p>💸 La crise économique et les politiques financières sont souvent tenues pour responsables de l'érosion du pouvoir d'achat.</p>
+        <hr class="w3-clear">
+        <!-- Economy -->
+        <iframe src="https://docs.google.com/spreadsheets/d/1na_QIDFefe-dMzO4blxIQkkpab_syc1WeChOw46vIEk/edit#gid=297707408" frameborder="0" width="100%" height="600" class="wow-style w3-margin-right"></iframe>        
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-share"></i> Afficher +</button> 
+      </div> 
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity">6 min</span>
+        <h4>Climat</h4><br>
+        <hr class="w3-clear">
+        <p>🌍➡️🏭 L'industrialisation et les émissions de gaz à effet de serre par les entreprises et les comportements individuels sont les principaux responsables.</p>
+        <!-- Terre -->
+        <iframe src="" frameborder="0" width="100%" height="600" class="w3-margin-bottom"></iframe>        
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-share"></i> Share</button> 
+      </div> 
 
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="https://infini.w3spaces.com/images/Leo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
@@ -346,7 +496,7 @@
         <h4>🧙‍♂️ Leo</h4><br>
         <hr class="w3-clear">
         <p>Have you seen this?</p>
-        <!--⏳minuteur, Pomodoro-->
+        <!-- ⏳ TIME minuteur, Pomodoro-->
         <iframe src="https://app.flocus.com/" frameborder="0" width="100%" height="600" class="w3-margin-bottom"></iframe>        
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-share"></i> Share</button> 
       </div> 
@@ -487,8 +637,23 @@
             // Vous pourriez ajouter un gestionnaire d'événements ici pour gérer le clic sur les boutons "Afficher +" et afficher plus d'informations
             </script>
           <p><button class="w3-button w3-block w3-theme-l4"><img src="https://wow.zamimg.com/images/wow/icons/tiny/quest-start-daily.gif" alt="daily"  style="width:15px;">Bonus Objectives</button></p>
+            <!-- Barre de progression Calories -->
+          <div class="w3-container w3-card w3-white w3-round w3-margin">            
+            <h4>Alimentation</h4>
+            <div>
+              <label for="calories-input">Calories consommées aujourd'hui (kcal):</label>
+              <input type="number" id="calories-input" value="0" />
+            </div>
+            <hr>
+            <div>
+              <label for="daily-limit-input">Objectif quotidien de calories</label>
+              <input type="number" id="daily-limit-input" value="2500" />
+              <span id="daily-limit-display">kCal</span>
+            </div>            
+          </div>        
         </div>
       </div>
+
       <br>
       
       <div class="w3-card w3-round w3-white w3-center">
@@ -541,6 +706,8 @@
 
       <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
         <p><i class="fa fa-bug w3-xxlarge">Developpeur Web</i></p>
+        <div id="bmr-result">Votre besoin calorique de base est de : </div>
+
       </div>
 
       <div class="w3-card w3-round w3-white w3-center">
@@ -575,9 +742,17 @@
       <div class="action-icon" data-tooltip="" style="background-image: url(''); background-size: cover; background-position: center; background-repeat: no-repeat;" onclick="">Vieillissement, dépendance et retraite <span class="tooltip">👵➡️📊 - Les systèmes de retraite et les politiques de prise en charge du vieillissement et de la dépendance sont cruciaux pour répondre à ces préoccupations.</span></div>
   </div>
 
-<!-- Footer -->
+<!-- Stock-Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
+  <h5>Stock</h5>
+  <div class="progress-container">
+      <div class="progress-bar" id="food-progress-bar">/L</div>
+  </div>
+
+  <div>
+      <label for="max-value-input">Réserve:  (en Litres)</label>
+      <input type="number" id="max-value-input" value="1000" />
+  </div>
 </footer>
 
 <footer class="w3-container w3-theme-d5">
@@ -609,50 +784,65 @@ function openNav() {
 }
 </script>
 
-<script>
-function demanderDateNaissance() {
-    var dateNaissance = prompt("Date de naissance ?", "01/12/1990");
-    if (dateNaissance !== null) {
-        // Convertir la date de naissance en un objet Date
-        var parts = dateNaissance.split('/');
-        var birthDate = new Date(parts[2], parts[1] - 1, parts[0]); // Attention aux mois 0-indexé
-        var currentDate = new Date();
-        var age = currentDate.getFullYear() - birthDate.getFullYear();
-        var m = currentDate.getMonth() - birthDate.getMonth();
-
-        // Si l'anniversaire de cette année n'est pas encore passé, soustraire 1.
-        if (m < 0 || (m === 0 && currentDate.getDate() < birthDate.getDate())) {
-            age--;
-        }
-
-        // Mettre à jour l'affichage de l'âge
-        document.getElementById("current-age").innerText = age;
-
-        // Afficher la date de naissance et l'âge dans la console
-        console.log("Votre date de naissance est : " + dateNaissance + "\nVotre âge est : " + age);
-
-        var esperanceVie = 80; // Espérance de vie maximale
-        var pourcentageVie = (age / esperanceVie) * 100;
-
-        // Mettre à jour la barre de progression
-        var progressBar = document.getElementById("age-progress");
-        progressBar.style.width = pourcentageVie + "%";
-
-        // Optionnel : afficher le pourcentage dans la barre en utilisant la variable `esperanceVie`
-        progressBar.innerText = `${pourcentageVie.toFixed(3)}% /${esperanceVie} years`;
-    }
-}
-</script>
-
-
-<form id="searchForm">
-  <button type="button" onclick="search()">Recherche</button>
-</form>
 
 <script src="OSINT.js"></script>
+<script src="BirthDate.js"></script>
+
+<script>
+function updateHPProgressBar() {
+  let maxHP = parseInt(document.getElementById('nights-lived').value);
+  let currentHP = parseInt(document.getElementById('current-age').value);
+
+  let percentage = (currentHP / maxHP) * 100;
+  document.getElementById('HP-progress-bar').style.width = `${Math.min(percentage, 100)}%`;
+  document.getElementById('HP-progress-bar').textContent = `${Math.floor(Math.min(percentage, 100))}%`;
+}
+
+document.getElementById('').addEventListener('input', updateHPProgressBar);
+document.getElementById('').addEventListener('input', updateHPProgressBar);  
+</script>  
 
 
+<script>
+// Function for food stock progress bar
+function updateFoodProgressBar() {
+  let maxStock = parseInt(document.getElementById('max-value-input').value);
+  let currentStock = parseInt(document.getElementById('current-value-input').value);
+  let percentage = (currentStock / maxStock) * 100;
+  document.getElementById('food-progress-bar').style.width = `${Math.min(percentage, 100)}%`;
+  document.getElementById('food-progress-bar').textContent = `${Math.floor(Math.min(percentage, 100))}%`;
+}
 
+document.getElementById('max-value-input').addEventListener('input', updateFoodProgressBar);
+document.getElementById('current-value-input').addEventListener('input', updateFoodProgressBar);
+
+// Function for calories progress bar
+function updateCaloriesProgressBar() {
+  const dailyLimit = parseInt(document.getElementById('daily-limit-input').value);
+  const consumedCalories = parseInt(document.getElementById('calories-input').value);
+  let percentage = (consumedCalories / dailyLimit) * 100;
+  document.getElementById('calories-progress-bar').style.width = `${Math.min(percentage, 100)}%`;
+  document.getElementById('calories-progress-bar').textContent = `${Math.floor(percentage)}%`;
+
+  if (percentage > 100) {
+    let overPercentage = (consumedCalories - dailyLimit) / dailyLimit * 100;
+    document.getElementById('calories-over-limit-bar').style.width = `${Math.min(overPercentage, 100)}%`;
+    document.getElementById('calories-over-limit-bar').textContent = `${Math.floor(overPercentage)}% dépassement`;
+  } else {
+    document.getElementById('calories-over-limit-bar').style.width = `0%`;
+    document.getElementById('calories-over-limit-bar').textContent = ``;
+  }
+}
+
+document.getElementById('daily-limit-input').addEventListener('input', updateCaloriesProgressBar);
+document.getElementById('calories-input').addEventListener('input', updateCaloriesProgressBar);
+
+// Initialize progress bars
+updateFoodProgressBar();
+updateCaloriesProgressBar();
+</script>
+
+<!--  Code ou Résultat @URL -->
 <script>
 function displayResult() {
   // Obtient l'URL actuelle
@@ -683,6 +873,31 @@ function displayResult() {
 // Appelle displayResult lorsque la page est chargée
 window.onload = displayResult;
 </script>
+
+<script>
+function calculateBMR() {
+    // Exemple de calcul BMR simplifié
+    const gender = document.getElementById('gender').value;
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+    // Exemple de calcul d'âge basé sur une date de naissance saisie (vous pouvez réutiliser la fonction existante dans votre code)
+    const ageText = document.getElementById('current-age').textContent; // Récupère le texte de l'élément
+    const age = parseInt(ageText, 10); // Convertit en nombre entier
+
+    let BMR;
+
+    if (gender === "male") {
+        BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+    } else {
+        BMR = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+    }
+
+    // Met à jour le contenu de l'élément pour afficher le BMR
+    document.getElementById('bmr-result').textContent = `Votre besoin calorique de base est de : ${BMR.toFixed(2)} kcal (limite quotidienne recommandée)`;
+}
+</script>
+
+
 
 </body>
 </html> 
