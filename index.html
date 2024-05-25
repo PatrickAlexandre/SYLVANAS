@@ -9,58 +9,54 @@
 </head>
 <body>
     <h1>Suivi des Activités Quotidiennes</h1>
-    <div class="grid-container">
-        <div class="activity">
+    <div class="grid-container" id="activities">
+        <div class="activity" id="activity-reveil-matinal-1">
             <h2><i class="fas fa-sun"></i> Réveil matinal</h2>
-            <input type="checkbox" id="reveil-matinal-1"><label for="reveil-matinal-1">Lever entre 5h00 et 6h00</label><br>
             <p>Maximiser la productivité en commençant la journée tôt.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-meditation-1">
             <h2><i class="fas fa-brain"></i> Méditation ou réflexion</h2>
-            <input type="checkbox" id="meditation-1"><label for="meditation-1">Clarifier l'esprit</label><br>
             <p>Préparer mentalement pour les défis de la journée.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-exercice-1">
             <h2><i class="fas fa-dumbbell"></i> Exercice physique</h2>
-            <input type="checkbox" id="exercice-1"><label for="exercice-1">Cardio, musculation, yoga</label><br>
             <p>Inclure des exercices variés avec ou sans entraîneur personnel.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-petit-dejeuner-1">
             <h2><i class="fas fa-utensils"></i> Petit-déjeuner nutritif</h2>
-            <input type="checkbox" id="petit-dejeuner-1"><label for="petit-dejeuner-1">Riche en nutriments</label><br>
             <p>Assurer un apport équilibré pour bien démarrer la journée.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-lecture-1">
             <h2><i class="fas fa-book"></i> Lecture et apprentissage continu</h2>
-            <input type="checkbox" id="lecture-1"><label for="lecture-1">Lire les nouvelles et livres</label><br>
             <p>Écouter des podcasts et des conférences pour enrichir ses connaissances.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-planification-1">
             <h2><i class="fas fa-calendar-alt"></i> Planification de la journée</h2>
-            <input type="checkbox" id="planification-1"><label for="planification-1">Réviser l'agenda</label><br>
             <p>Organiser les réunions et appels pour une journée productive.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-soins-1">
             <h2><i class="fas fa-spa"></i> Soins personnels</h2>
-            <input type="checkbox" id="soins-1"><label for="soins-1">Soins de la peau, massage, thérapie</label>
             <p>Prendre soin de soi pour maintenir un bon équilibre physique et mental.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-famille-1">
             <h2><i class="fas fa-heart"></i> Temps en famille</h2>
-            <input type="checkbox" id="famille-1"><label for="famille-1">Renforcer les liens</label><br>
             <p>Passer du temps de qualité avec les proches pour renforcer les relations familiales.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-investissements-1">
             <h2><i class="fas fa-chart-line"></i> Révision des investissements</h2>
-            <input type="checkbox" id="investissements-1"><label for="investissements-1">Consulter les performances</label><br>
             <p>Ajuster les stratégies en fonction des performances actuelles.</p>
         </div>
-        <div class="activity">
+        <div class="activity" id="activity-preparation-1">
             <h2><i class="fas fa-bullseye"></i> Préparation mentale</h2>
-            <input type="checkbox" id="preparation-1"><label for="preparation-1">Préparer pour réunions et présentations</label><br>
             <p>Se préparer mentalement pour performer dans chaque interaction.</p>
         </div>
     </div>
+
+    <h2>Activités Complétées</h2>
+    <div class="grid-container" id="completed-activities">
+        <!-- Les activités complétées seront déplacées ici -->
+    </div>
+    <button id="reset-button">Réinitialiser</button>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,19 +1,30 @@
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
-    const checkboxes = document.querySelectorAll("input[type='checkbox']");
+    const activitiesContainer = document.getElementById("activities");
+    const completedActivitiesContainer = document.getElementById("completed-activities");
+    const resetButton = document.getElementById("reset-button");
 
     // Load saved state
-    checkboxes.forEach(checkbox => {
-        const savedState = localStorage.getItem(checkbox.id);
-        if (savedState === "true") {
-            checkbox.checked = true;
+    const activities = document.querySelectorAll(".activity");
+    activities.forEach(activity => {
+        const savedState = localStorage.getItem(activity.id);
+        if (savedState === "completed") {
+            completedActivitiesContainer.appendChild(activity);
         }
     });
 
-    // Save state on change
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener("change", () => {
-            localStorage.setItem(checkbox.id, checkbox.checked);
+    // Hide activity on click
+    activities.forEach(activity => {
+        activity.addEventListener("click", () => {
+            completedActivitiesContainer.appendChild(activity);
+            localStorage.setItem(activity.id, "completed");
         });
+    });
+
+    // Reset activities
+    resetButton.addEventListener("click", () => {
+        while (completedActivitiesContainer.firstChild) {
+            activitiesContainer.appendChild(completedActivitiesContainer.firstChild);
+        }
+        localStorage.clear();
     });
 });
