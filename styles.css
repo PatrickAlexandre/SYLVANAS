@@ -1,0 +1,69 @@
+/* styles.css */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 20px;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #444;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.activity {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.activity:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+h2 {
+    color: #666;
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+h2 i {
+    margin-right: 10px;
+    color: #f39c12;
+}
+
+label {
+    margin-left: 10px;
+    font-size: 1.1em;
+}
+
+p {
+    margin-top: 10px;
+    color: #555;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+    transition: transform 0.2s;
+}
+
+input[type="checkbox"]:hover {
+    transform: scale(1.3);
+}
