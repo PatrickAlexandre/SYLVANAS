@@ -67,3 +67,6 @@ input[type="checkbox"] {
 input[type="checkbox"]:hover {
     transform: scale(1.3);
 }
+.completed-activities {
+    opacity: 0.5; /* Ajustez la valeur de l'opacité selon vos préférences */
+}
