@@ -45,7 +45,7 @@
     <main class="container mx-auto py-8 px-4 md:px-0">
 
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
-            <h2 class="text-2xl font-bold">Enseignements Les Plus Populaires</h2>
+            <h2 class="text-2xl font-bold">Cours Les Plus Populaires</h2>
             <input type="text" placeholder="Message ..." class="w-full md:w-1/3 p-2 rounded bg-[#333] text-white" aria-label="Recherche">
         </div>
 
@@ -56,148 +56,120 @@
             <li><i class="fas fa-info-circle"></i> Provide detailed explanations</li>
         </ul>
 
-        <!-- ChatGPT 4.0 Functionality Integration
-        <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
-            <h2 class="text-2xl font-bold text-white">ChatGPT 4.0 Features</h2>
-            <div class="w-full md:w-1/3 p-2 rounded bg-[#333] text-white">
-                <p class="mb-2">With ChatGPT 4.0, you can:</p>
-                <ul class="list-disc pl-5">
-                    <li>Generate text responses</li>
-                    <li>Analyze and summarize documents</li>
-                    <li>Handle image and audio inputs</li>
-                    <li>Provide detailed explanations</li>
-                </ul>
-            </div>
-        </div>
-        <h2 class="text-2xl font-bold text-white">Upload Photo</h2>
-        <input type="file" accept="image/*" class="w-full md:w-1/3 p-2 rounded bg-[#333] text-white" aria-label="Upload a photo">
-        <h2 class="text-2xl font-bold text-white">Upload Audio</h2>
-        <input type="file" accept="audio/*" class="w-full md:w-1/3 p-2 rounded bg-[#333] text-white" aria-label="Upload an audio file"> -->
-
-
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <!-- Contenu des catégories -->
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Mathématiques" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">485 K</div>
+                <!-- <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">485 K</div> -->
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-calculator"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Mathématiques</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Physique" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">29.7 K</div>
+                <!-- <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">29.7 K</div> -->
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-atom"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Physique</div>
             </div>
-            <!-- Ajoutez plus de catégories ici -->
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Chimie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">842 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-flask"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Chimie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Biologie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">1.62 M</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-dna"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Biologie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours d'Informatique" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">2.2 M</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-laptop-code"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Informatique</div>
             </div>
+            <ul class="hidden md:block text-gray-700 text-sm mb-6">
+                <li><i class="fas fa-keyboard"></i> Generate text responses</li>
+                <li><i class="fas fa-file-alt"></i> Analyze and summarize documents</li>
+                <li><i class="fas fa-image"></i> Handle image and audio inputs</li>
+                <li><i class="fas fa-info-circle"></i> Provide detailed explanations</li>
+            </ul>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours d'Économie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">815 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-chart-line"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Économie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Droit" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">9.3 M</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-balance-scale"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Droit</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Médecine" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">129 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-stethoscope"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Médecine</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Littérature" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">394 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-book"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Littérature</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Philosophie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">3.52 M</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-lightbulb"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Philosophie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours d'Histoire" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">9.06 M</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-landmark"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Histoire</div>
             </div>
+            <!-- Ajoutez plus de catégories ici 
+
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Géographie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">1.15 M</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-globe"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Géographie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Sociologie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">46.9 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-users"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Sociologie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Psychologie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">139 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-brain"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Psychologie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Philosophie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">238 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-lightbulb"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Philosophie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Communication" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">502 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-comments"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Communication</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Gestion" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">192 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-business-time"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Gestion</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Marketing" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">219 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-bullhorn"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Marketing</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Philosophie" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">2.09 M</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-lightbulb"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Philosophie</div>
             </div>
             <div class="relative group">
                 <img src="https://placehold.co/280x160" alt="Cours de Communication" class="w-full h-auto">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 p-1 text-sm">372 K</div>
                 <div class="absolute bottom-0 right-0 bg-black bg-opacity-50 p-1 text-sm"><i class="fas fa-comments"></i></div>
                 <div class="text-center mt-1 group-hover:underline">Communication</div>
             </div>
+
+            -->
         </div>
 
     </main>
@@ -222,12 +194,17 @@
             </div>
         </div>
         
-        <!-- CONNECTED = Bar+Progression -->
-        <div class="container mx-auto">
+        <!-- Login > Bar+Progression
+        <div class="container mx-auto mt-4 relative">
             <div class="w-1/2 mx-auto bg-gray-700 rounded-full h-4">
-                <div class="bg-teal-500 h-4 rounded-full" style="width: 60%;"></div>
+                <div class="bg-teal-500 h-4 rounded-full" style="width: 80%;"></div>
             </div>
-        </div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-white">0,8</span>
+            </div>
+        </div> -->
+
+
 
     </footer>
 
